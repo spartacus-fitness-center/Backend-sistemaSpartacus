@@ -31,6 +31,16 @@
 $ npm install
 ```
 
+## Prisma setup
+
+Antes de configurar asegurate que tengas el archivo '.env' creado
+
+```bash
+$ npx prisma migrate dev --name init
+
+$ npx prisma generate
+```
+
 ## Compile and run the project
 
 ```bash
