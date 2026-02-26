@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PrismaService } from './prisma.service';
+import { PrismaService } from './prisma/prisma.service';
 
 @Injectable()
 export class AppService {
@@ -8,7 +8,6 @@ export class AppService {
 
   async getHello(): Promise<string> {
     const branches = await this.prisma.branch.findMany();
-    console.log(branches)
     return `Hello World! and we have this branches ${JSON.stringify(branches)}`;
   }
 }
