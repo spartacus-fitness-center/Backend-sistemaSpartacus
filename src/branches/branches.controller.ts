@@ -4,13 +4,15 @@ import { BranchesService } from './branches.service';
 
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
+import { ResponseMessage } from 'src/common/decorators/response-message.decorator';
+import { NoStandardResponse } from 'src/common/decorators/no-standar-response.decorator';
 
 @Controller('branches')
 export class BranchesController {
-  constructor(private readonly branchesService: BranchesService) {}
+  constructor(private readonly branchesService: BranchesService) { }
 
   @Get("health")
-  health(): string{
+  health(): string {
     return "El endpoint si funciona correctamente"
   }
 
@@ -20,12 +22,13 @@ export class BranchesController {
   }
 
   @Get()
+  @ResponseMessage('Branches found successfully')
   findAll() {
     return this.branchesService.findAll();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: number) {
     return this.branchesService.findOne(+id);
   }
 

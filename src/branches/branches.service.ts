@@ -19,7 +19,7 @@ export class BranchesService {
     return 'This action adds a new branch';
   }
 
-  async findAll(): Promise<DefaultResponse<ResponseBranchDto[]>> {
+  async findAll(): Promise<ResponseBranchDto[]> {
     const branches = await this.prisma.branch.findMany({
       select:
       {
@@ -31,7 +31,7 @@ export class BranchesService {
         longitude: true
       }
     });
-    return new DefaultResponse(branches, "Branches found successfully")
+    return branches
   }
 
   findOne(id: number) {
