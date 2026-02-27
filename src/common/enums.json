@@ -1,0 +1,4 @@
+{
+    "Role": ["SUPER_ADMIN", "ADMIN", "COACH", "MEMBER"],
+    "UserStatus": ["ACTIVE", "INACTIVE", "BLOCKED"]
+}

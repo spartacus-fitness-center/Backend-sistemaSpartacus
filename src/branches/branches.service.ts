@@ -1,14 +1,10 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
 
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ResponseBranchDto } from './dto/response-branch.dto';
-
-import { DefaultResponse } from 'src/default-response';
-
-
 
 @Injectable()
 export class BranchesService {
@@ -28,7 +24,7 @@ export class BranchesService {
         state: true,
         municipality: true,
         latitude: true,
-        longitude: true
+        longitude: true,
       }
     });
     return branches

@@ -49,7 +49,7 @@ model User {
   email     String     @unique
   phone     String?
   password  String
-  role      Role
+  role      Role       @default(MEMBER)
   status    UserStatus @default(ACTIVE)
 
   branchId  String?     @map("branch_id")

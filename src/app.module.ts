@@ -7,9 +7,10 @@ import { AppService } from './app.service';
 
 import { BranchesModule } from './branches/branches.module';
 import { PrismaModule } from './prisma/prisma.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
-  imports: [ConfigModule.forRoot(), BranchesModule, PrismaModule],
+  imports: [ConfigModule.forRoot(), BranchesModule, PrismaModule, AuthModule],
   controllers: [AppController],
   providers: [AppService],
 })
