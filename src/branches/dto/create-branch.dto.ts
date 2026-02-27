@@ -17,12 +17,10 @@ export class CreateBranchDto {
     municipality: string
 
     @IsNotEmpty()
-    @IsNumber()
     @IsLatitude()
     latitude: number
 
     @IsNotEmpty()
-    @IsNumber()
     @IsLongitude()
     longitude: number
 }

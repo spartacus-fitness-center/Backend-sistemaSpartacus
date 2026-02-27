@@ -1,12 +1,14 @@
-import { IsEmail, IsNotEmpty, IsStrongPassword } from 'class-validator'
+import { Transform } from 'class-transformer'
+import { IsEmail, IsNotEmpty, IsString } from 'class-validator'
 
 
 export class LoginRequestDto {
     @IsNotEmpty()
     @IsEmail()
+    @Transform(({ value }) => value.trim().toLowerCase())
     email: string
 
     @IsNotEmpty()
-    @IsStrongPassword()
+    @IsString()
     password: string
- }
+}
