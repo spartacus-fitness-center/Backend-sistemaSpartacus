@@ -5,7 +5,7 @@ export class UserLoginDto {
     id: string
     name: string
     email: string
-    branchId: string | null
+    branchId?: string | null
     branch?: ResponseBranchDto | null
     role: Role
 }

@@ -1,13 +1,17 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
+
 import { LoginResponseDto } from './dto/login-response.dto';
+
 import { LoginRequestDto } from './dto/login-request.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 
 import * as bcrypt from 'bcrypt';
 
+import { JwtService } from '@nestjs/jwt';
+
 @Injectable()
 export class AuthService {
-    constructor(private prisma: PrismaService) { }
+    constructor(private prisma: PrismaService, private jwtService: JwtService) { }
 
     async login(loginRequestDto: LoginRequestDto): Promise<LoginResponseDto> {
         const { email, password } = loginRequestDto
@@ -21,7 +25,6 @@ export class AuthService {
                 }
             }
         })
-        console.log(user)
 
         if (!user) throw new UnauthorizedException('Invalid credentials');
 
@@ -37,16 +40,17 @@ export class AuthService {
             branchId: user.branchId
         }
 
-        const accessToken = "prueba de access token aun no generado"
-        const refreshToken = "preuba de refresh token aun no generado"
+        const accessToken = this.jwtService.sign(payload, { secret: process.env.JWT_ACCESS_SECRET, expiresIn: '15m' })
+        const refreshToken = this.jwtService.sign({ sub: user.id }, { secret: process.env.JWT_REFRESH_SECRET, expiresIn: '7d' })
+
         return {
             user: {
                 id: user.id,
                 name: user.name,
                 email: user.email,
-                branchId: user.branchId,
-                branch: user.branch,
                 role: user.role,
+                // branchId: user.branchId,
+                branch: user.branch
             },
             accessToken,
             refreshToken
