@@ -5,8 +5,8 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
+  provider     = "prisma-client"
+  output       = "../generated/prisma"
   moduleFormat = "cjs"
 }
 
@@ -28,14 +28,14 @@ enum UserStatus {
 }
 
 model Branch {
-  id        String  @id @default(uuid())
-  name      String
-  state     String
+  id           String @id @default(uuid())
+  name         String
+  state        String
   municipality String
-  latitude  Float
-  longitude Float
+  latitude     Float
+  longitude    Float
 
-  users     User[]
+  users User[]
 
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
@@ -44,19 +44,69 @@ model Branch {
 }
 
 model User {
-  id        String     @id @default(uuid())
-  name      String
-  email     String     @unique
-  phone     String?
-  password  String
-  role      Role       @default(MEMBER)
-  status    UserStatus @default(ACTIVE)
+  id              String     @id @default(uuid())
+  name            String
+  email           String     @unique
+  phone           String?
+  password        String
+  role            Role       @default(MEMBER)
+  status          UserStatus @default(ACTIVE)
+  emailIsVerified Boolean    @default(false) @map("email_is_verified")
 
-  branchId  String?     @map("branch_id")
-  branch    Branch?     @relation(fields: [branchId], references: [id])
+  branchId String? @map("branch_id")
+  branch   Branch? @relation(fields: [branchId], references: [id])
 
-  createdAt DateTime   @default(now()) @map("created_at")
-  updatedAt DateTime   @updatedAt @map("updated_at")
+  userAuthDetail UserAuthDetail?
+  memberProfile  MemberProfile?
+
+  // 🔥 miembros que este coach tiene asignados
+  coachedMembers MemberProfile[] @relation("CoachMembers")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("users")
+}
+
+model MemberProfile {
+  userId String @id @map("user_id")
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  coachId String? @map("coach_id")
+  coach   User?   @relation("CoachMembers", fields: [coachId], references: [id])
+
+  memberNumber String?   @map("member_number")
+  weight       Float?
+  height       Float?
+  goal         String?
+  birthdate    DateTime?
+  streak       Int       @default(0)
+
+  isProfileCompleted Boolean @default(false) @map("is_profile_completed")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("member_profiles")
+}
+
+model UserAuthDetail {
+  userId String @id @map("user_id")
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  refreshTokenHash String?   @map("refresh_token_hash")
+  refreshExpiresAt DateTime? @map("refresh_expires_at")
+
+  resetTokenHash String?   @map("reset_token_hash")
+  resetExpiresAt DateTime? @map("reset_expires_at")
+  resetIsUsed    Boolean   @default(false) @map("reset_is_used")
+
+  emailVerifyTokenHash String?   @map("email_verify_token_hash")
+  emailVerifyExpiresAt DateTime? @map("email_verify_expires_at")
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  @@map("user_auth_details")
 }
