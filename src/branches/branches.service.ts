@@ -14,6 +14,7 @@ export class BranchesService {
   constructor(private prisma: PrismaService) { }
 
   create(createBranchDto: CreateBranchDto) {
+    console.log(createBranchDto)
     return 'This action adds a new branch';
   }
 
