@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
 
 import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
@@ -13,9 +13,21 @@ export class BranchesService {
 
   constructor(private prisma: PrismaService) { }
 
-  create(createBranchDto: CreateBranchDto) {
-    console.log(createBranchDto)
-    return 'This action adds a new branch';
+  async create(createBranchDto: CreateBranchDto): Promise<ResponseBranchDto> {
+    const { name } = createBranchDto
+
+    const branchExist = await this.prisma.branch.findUnique({ where: { name } })
+    if (branchExist) throw new BadRequestException("Branch already exists");
+
+    const branch = await this.prisma.branch.create({ data: createBranchDto })
+    return {
+      id: branch.id,
+      name: branch.name,
+      state: branch.state,
+      municipality: branch.municipality,
+      latitude: branch.latitude,
+      longitude: branch.longitude
+    };
   }
 
   async findAll(): Promise<ResponseBranchDto[]> {

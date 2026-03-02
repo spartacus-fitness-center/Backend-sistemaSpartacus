@@ -44,4 +44,8 @@ export class AuthController {
 
     return { user, accessToken }
   }
+  @Post('compare')
+  async compare(@Body() body: { id: string, refreshToken: string }) {
+    return this.authService.compare(body)
+  }
 }

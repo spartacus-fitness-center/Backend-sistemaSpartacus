@@ -29,7 +29,7 @@ enum UserStatus {
 
 model Branch {
   id           String @id @default(uuid())
-  name         String
+  name         String @unique
   state        String
   municipality String
   latitude     Float

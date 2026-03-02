@@ -59,7 +59,7 @@ export class AuthService {
 
         if (user.status !== 'ACTIVE') throw new ForbiddenException('Account is not active');
 
-        if (!user.emailIsVerified) throw new ForbiddenException('Email is not verified');
+        // if (!user.emailIsVerified) throw new ForbiddenException('Email is not verified');
 
         const { accessToken, refreshToken } = await this.generateTokens(user)
 
@@ -111,5 +111,15 @@ export class AuthService {
             accessToken,
             refreshToken
         }
+    }
+
+    async compare({ id, refreshToken }) {
+        const userAuthDetails = await this.prisma.userAuthDetail.findUnique({ where: { userId: id } })
+        console.log(userAuthDetails)
+        if (!userAuthDetails?.refreshTokenHash) throw new BadRequestException("No existe hash en el usuario")
+
+        const isValid = await bcrypt.compare(refreshToken, userAuthDetails.refreshTokenHash)
+        console.log({ refreshToken, refreshTokenHash: userAuthDetails.refreshTokenHash })
+        return isValid
     }
 }

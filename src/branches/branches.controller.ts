@@ -12,9 +12,10 @@ import { ResponseBranchDto } from './dto/response-branch.dto';
 export class BranchesController {
   constructor(private readonly branchesService: BranchesService) { }
 
+
   @Get("health")
   health() {
-    return "El endpoint si funciona correctamente"
+    return "Si ta jalando "
   }
 
   @Post()
