@@ -20,7 +20,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
             where: { id: payload.sub },
         });
 
-        if (!user) throw new UnauthorizedException();
+        if (!user) throw new UnauthorizedException("the user not exist");
         if (user.status !== 'ACTIVE') throw new UnauthorizedException('Account not active');
 
         return {

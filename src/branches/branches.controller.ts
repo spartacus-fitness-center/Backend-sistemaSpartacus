@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
 
 import { BranchesService } from './branches.service';
 
@@ -6,18 +6,22 @@ import { CreateBranchDto } from './dto/create-branch.dto';
 import { UpdateBranchDto } from './dto/update-branch.dto';
 import { ResponseBranchDto } from './dto/response-branch.dto';
 
-import { ResponseMessage } from 'src/common/decorators/response-message.decorator';
-
 import { JwtAuthGuard } from 'src/auth/guards/jwt-auth.guard';
+import { RoleGuard } from 'src/auth/guards/role.guard';
+
+import { ResponseMessage } from 'src/common/decorators/response-message.decorator';
+import { CurrentUser } from 'src/common/decorators/current-user.decorator';
+import { Roles } from 'src/common/decorators/roles.decorator';
 
 @Controller('branches')
 export class BranchesController {
   constructor(private readonly branchesService: BranchesService) { }
 
-  @UseGuards(JwtAuthGuard)
+  @Roles('ADMIN')
+  @UseGuards(JwtAuthGuard, RoleGuard)
   @Get("health")
-  health(@Request() req) {
-    return { message: "Si ta jalando", user: req.user }
+  health(@CurrentUser() user) {
+    return { message: "Si ta jalando", user }
   }
 
   @Post()

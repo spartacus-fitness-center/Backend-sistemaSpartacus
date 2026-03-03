@@ -24,7 +24,7 @@ export class AuthService {
             branchId: user.branchId
         }
 
-        const accessToken = this.jwtService.sign(payload, { secret: process.env.JWT_ACCESS_SECRET, expiresIn: '1m' })
+        const accessToken = this.jwtService.sign(payload, { secret: process.env.JWT_ACCESS_SECRET, expiresIn: '15m' })
         const refreshToken = this.jwtService.sign({ sub: user.id }, { secret: process.env.JWT_REFRESH_SECRET, expiresIn: '7d' })
 
         const refreshTokenHash = await bcrypt.hash(refreshToken, 10)
