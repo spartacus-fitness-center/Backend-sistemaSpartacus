@@ -20,14 +20,14 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
             where: { id: payload.sub },
         });
 
-        if (!user) throw new UnauthorizedException("the user not exist");
-        if (user.status !== 'ACTIVE') throw new UnauthorizedException('Account not active');
+        if (!user || user.status !== 'ACTIVE') {
+            throw new UnauthorizedException();
+        }
 
         return {
             id: user.id,
             role: user.role,
-            branchId: user.branchId,
-            user
+            branchId: user.branchId
         };
     }
 }

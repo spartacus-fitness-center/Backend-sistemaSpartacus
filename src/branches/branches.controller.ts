@@ -17,7 +17,7 @@ import { Roles } from 'src/common/decorators/roles.decorator';
 export class BranchesController {
   constructor(private readonly branchesService: BranchesService) { }
 
-  @Roles('ADMIN')
+  @Roles('MEMBER')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Get("health")
   health(@CurrentUser() user) {
