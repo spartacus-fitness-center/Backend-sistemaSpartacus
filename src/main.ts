@@ -10,6 +10,8 @@ import cookieParser from 'cookie-parser'
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
+  // app.set('trust proxy', 1)
+  
   app.useGlobalPipes(
     new TrimPipe(),
     new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true, transform: true })
@@ -20,6 +22,7 @@ async function bootstrap() {
   app.useGlobalFilters(new HttpExceptionFilter());
 
   app.use(cookieParser())
+  
 
   await app.listen(process.env.PORT ?? 3000);
 }

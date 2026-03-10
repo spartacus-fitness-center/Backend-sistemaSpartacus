@@ -12,6 +12,7 @@ import { RoleGuard } from 'src/auth/guards/role.guard';
 import { ResponseMessage } from 'src/common/decorators/response-message.decorator';
 import { CurrentUser } from 'src/common/decorators/current-user.decorator';
 import { Roles } from 'src/common/decorators/roles.decorator';
+import type { AuthenticatedUser } from 'src/common/interfaces/authenticated-user.interface';
 
 @Controller('branches')
 export class BranchesController {
@@ -20,7 +21,7 @@ export class BranchesController {
   @Roles('MEMBER')
   @UseGuards(JwtAuthGuard, RoleGuard)
   @Get("health")
-  health(@CurrentUser() user) {
+  health(@CurrentUser() user: AuthenticatedUser) {
     return { message: "Si ta jalando", user }
   }
 

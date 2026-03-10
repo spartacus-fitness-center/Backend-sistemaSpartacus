@@ -100,7 +100,6 @@ model UserAuthDetail {
 
   resetTokenHash String?   @map("reset_token_hash")
   resetExpiresAt DateTime? @map("reset_expires_at")
-  resetIsUsed    Boolean   @default(false) @map("reset_is_used")
 
   emailVerifyTokenHash String?   @map("email_verify_token_hash")
   emailVerifyExpiresAt DateTime? @map("email_verify_expires_at")
