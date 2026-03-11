@@ -509,21 +509,6 @@
             }
           },
           "response": []
-        },
-        {
-          "name": "Prueba",
-          "id": "a4321b0d-3f17-4945-865e-ce886e8ee0cc",
-          "request": {
-            "method": "GET",
-            "header": [],
-            "url": {
-              "raw": "{{BASE_URL}}",
-              "host": [
-                "{{BASE_URL}}"
-              ]
-            }
-          },
-          "response": []
         }
       ],
       "id": "ad310ae4-aab4-41f1-b0f5-49ef2e95ee6a"
