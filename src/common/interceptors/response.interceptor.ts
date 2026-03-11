@@ -15,7 +15,7 @@ export class ResponseInterceptor<T> implements NestInterceptor<T, any> {
 
     if (isIgnored) return next.handle();
 
-    const message = this.reflector.get<string>('response_message', context.getHandler()) || 'Operación exitosa';
+    const message = this.reflector.get<string>('response_message', context.getHandler()) || 'Operation successful';
 
     return next.handle().pipe(
       map((data) => ({

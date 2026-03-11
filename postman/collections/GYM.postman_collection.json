@@ -1,0 +1,532 @@
+{
+  "info": {
+    "_postman_id": "96d6c093-1642-4937-95ca-8affe8f3cda3",
+    "name": "GYM",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Branches",
+      "item": [
+        {
+          "name": "Health",
+          "id": "ba4927c5-6ea5-456f-bc16-b74732c297d9",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/branches/health",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "branches",
+                "health"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create Branch",
+          "id": "ae2326c2-9ba7-414b-8f86-24c6e11d8821",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"San Felipe\",\r\n    \"state\": \"Guanajuato\",\r\n    \"municipality\": \"San Felipe\",\r\n    \"latitude\": 21.4853545,\r\n    \"longitude\": -101.2218452\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/branches",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "branches"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Branches",
+          "id": "6c789e62-029f-4541-ab54-b29bd60c0352",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/branches",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "branches"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get Branch",
+          "id": "69f1dc39-f1e3-4c70-84cb-6aa706ab12c8",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/branches/1",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "branches",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Patch Branch",
+          "id": "fc7b5de2-9f85-48b0-a027-38ead63c7d5f",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/branches/1",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "branches",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete Branch",
+          "id": "ae751a72-1aa5-46e4-bf21-581015846dec",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/branches/1",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "branches",
+                "1"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "67ce466c-e23c-48de-a776-2b62b881b1c7"
+    },
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "87c6b764-7d09-46c8-bbb2-a69f52a9dd25",
+                "exec": [
+                  "try {\r",
+                  "    const response = pm.response.json();\r",
+                  "    if (response.success) {\r",
+                  "        if (response?.data?.accessToken) {\r",
+                  "            pm.environment.set(\"ACCESS_TOKEN\", response.data.accessToken);\r",
+                  "        }\r",
+                  "    }\r",
+                  "} catch (error) {\r",
+                  "    console.log(\"La respuesta no es JSON o no contiene accessToken\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "65c0167b-70ea-4b27-8777-db6c43f286c4",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "cdc9ed7e-0e17-4b20-8e44-71db9844f199",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"avalosalan789@gmail.com\",\r\n    \"password\": \"password123A_\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/login",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5587157d-ea6e-4c7d-8afb-e58a80f5a9d6",
+                "exec": [
+                  "try {\r",
+                  "    const response = pm.response.json();\r",
+                  "    if (response.success) {\r",
+                  "        if (response?.data?.accessToken) {\r",
+                  "            pm.environment.set(\"ACCESS_TOKEN\", response.data.accessToken);\r",
+                  "        }\r",
+                  "    }\r",
+                  "} catch (error) {\r",
+                  "    console.log(\"La respuesta no es JSON o no contiene accessToken\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "bc4c937d-964c-4422-bb99-b012e9d54a4a",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "148cc066-0193-4f01-95a1-c7d122bc4591",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Alan\",\r\n    \"email\": \"avalosalan789@gmail.com\",\r\n    \"password\": \"password123A_\",\r\n    \"branchId\": \"8ac0e90b-f4d1-45b8-9a8a-c3401150c366\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/register",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Refresh",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "39de595a-1b7f-4122-83c8-c04f695530a7",
+                "exec": [
+                  "try {\r",
+                  "    const response = pm.response.json();\r",
+                  "    if (response.success) {\r",
+                  "        if (response?.data?.accessToken) {\r",
+                  "            pm.environment.set(\"ACCESS_TOKEN\", response.data.accessToken);\r",
+                  "        }\r",
+                  "    }\r",
+                  "} catch (error) {\r",
+                  "    console.log(\"La respuesta no es JSON o no contiene accessToken\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "eaf56c40-89e6-460a-b3c8-955cf650cbd9",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "7a0a43ce-2d63-4d5f-816e-8da54b2cc24c",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/auth/refresh",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "refresh"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Send Verification Code",
+          "id": "dd53b945-bcd4-43d2-b349-7f2a0e227746",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/auth/send-verification-code",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "send-verification-code"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Logout",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "id": "5c7c47bb-5d54-4646-b697-54cc104db96c",
+                "exec": [
+                  "try {\r",
+                  "    const response = pm.response.json();\r",
+                  "    if (response.success) {\r",
+                  "        pm.environment.set(\"ACCESS_TOKEN\", null);\r",
+                  "    }\r",
+                  "} catch (error) {\r",
+                  "    console.log(\"La respuesta no es JSON o no contiene accessToken\");\r",
+                  "}"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "id": "1c65c55c-60d1-4822-80f6-6e8698a8f0a5",
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "id": "3499f6e0-983d-4e5f-8fc7-5586ac010bf6",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}/auth/logout",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "logout"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Verify Email",
+          "id": "aea8ea9f-3d05-40b8-b3a9-1e3cdb9d0c28",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{ACCESS_TOKEN}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"code\": \"226259\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/verify-email",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "verify-email"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Forgot Password",
+          "id": "f8d2beb3-35f7-488a-8c09-088a011f7ac1",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"avalosalan789@gmail.com\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/forgot-password",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "forgot-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Reset Password",
+          "id": "7f7751d8-f26b-4a91-9cf9-a186a88165c4",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"email\": \"avalosalan789@gmail.com\",\r\n    \"code\": \"995176\",\r\n    \"newPassword\": \"password123A_\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{BASE_URL}}/auth/reset-password",
+              "host": [
+                "{{BASE_URL}}"
+              ],
+              "path": [
+                "auth",
+                "reset-password"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Prueba",
+          "id": "a4321b0d-3f17-4945-865e-ce886e8ee0cc",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{BASE_URL}}",
+              "host": [
+                "{{BASE_URL}}"
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "id": "ad310ae4-aab4-41f1-b0f5-49ef2e95ee6a"
+    }
+  ]
+}
