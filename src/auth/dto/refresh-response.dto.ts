@@ -1,4 +1,4 @@
 export class RefreshResponseDto {
-    accessToken: string
+    accessToken!: string
     refreshToken?: string
 }

@@ -1,0 +1,4 @@
+$kind: http-request
+url: "{{BASE_URL}}/branches/1"
+method: PATCH
+order: 5000

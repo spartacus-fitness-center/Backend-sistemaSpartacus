@@ -1,0 +1,27 @@
+$kind: http-request
+url: "{{BASE_URL}}/auth/refresh"
+method: POST
+scripts:
+  - type: afterResponse
+    code: "try {\r
+
+      \    const response = pm.response.json();\r
+
+      \    if (response.success) {\r
+
+      \        if (response?.data?.accessToken) {\r
+
+      \            pm.environment.set(\"ACCESS_TOKEN\",
+      response.data.accessToken);\r
+
+      \        }\r
+
+      \    }\r
+
+      } catch (error) {\r
+
+      \    console.log(\"La respuesta no es JSON o no contiene accessToken\");\r
+
+      }"
+    language: text/javascript
+order: 3000

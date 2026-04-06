@@ -1,0 +1,11 @@
+$kind: http-request
+url: "{{BASE_URL}}/auth/verify-email"
+method: POST
+body:
+  type: json
+  content: "{\r\n    \"code\": \"226259\"\r\n}"
+auth:
+  type: bearer
+  credentials:
+    token: "{{ACCESS_TOKEN}}"
+order: 6000

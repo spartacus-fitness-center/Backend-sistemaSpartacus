@@ -5,12 +5,12 @@ export class RegisterRequestDto {
     @IsNotEmpty()
     @IsString()
     @Length(3, 150)
-    name: string
+    name!: string
 
     @IsNotEmpty()
     @Transform(({ value }) => value.trim().toLowerCase())
     @IsEmail()
-    email: string
+    email!: string
 
     @IsOptional()
     @IsPhoneNumber('MX')
@@ -23,9 +23,9 @@ export class RegisterRequestDto {
         minNumbers: 1,
         minSymbols: 1,
     })
-    password: string;
+    password!: string;
 
     @IsNotEmpty()
     @IsUUID()
-    branchId: string
+    branchId!: string
 }

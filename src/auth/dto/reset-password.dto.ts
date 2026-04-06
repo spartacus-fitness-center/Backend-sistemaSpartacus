@@ -5,12 +5,12 @@ export class ResetPasswordDto {
     @IsNotEmpty()
     @IsEmail()
     @Transform(({ value }) => value.trim().toLowerCase())
-    email: string
+    email!: string
 
     @IsNotEmpty()
     @IsString()
     @Length(6, 6)
-    code: string
+    code!: string
 
     @IsNotEmpty()
     @IsStrongPassword({
@@ -19,5 +19,5 @@ export class ResetPasswordDto {
         minNumbers: 1,
         minSymbols: 1,
     })
-    newPassword: string
+    newPassword!: string
 }

@@ -4,23 +4,23 @@ export class CreateBranchDto {
     @IsNotEmpty()
     @Length(3, 100)
     @IsString()
-    name: string
+    name!: string
 
     @IsNotEmpty()
     @Length(3, 50)
     @IsString()
-    state: string
+    state!: string
 
     @Length(3, 100)
     @IsNotEmpty()
     @IsString()
-    municipality: string
+    municipality!: string
 
     @IsNotEmpty()
     @IsLatitude()
-    latitude: number
+    latitude!: number
 
     @IsNotEmpty()
     @IsLongitude()
-    longitude: number
+    longitude!: number
 }

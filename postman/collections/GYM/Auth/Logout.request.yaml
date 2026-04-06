@@ -1,0 +1,26 @@
+$kind: http-request
+url: "{{BASE_URL}}/auth/logout"
+method: POST
+auth:
+  type: bearer
+  credentials:
+    token: "{{ACCESS_TOKEN}}"
+scripts:
+  - type: afterResponse
+    code: "try {\r
+
+      \    const response = pm.response.json();\r
+
+      \    if (response.success) {\r
+
+      \        pm.environment.set(\"ACCESS_TOKEN\", null);\r
+
+      \    }\r
+
+      } catch (error) {\r
+
+      \    console.log(\"La respuesta no es JSON o no contiene accessToken\");\r
+
+      }"
+    language: text/javascript
+order: 5000

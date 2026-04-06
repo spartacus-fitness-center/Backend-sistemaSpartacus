@@ -6,9 +6,9 @@ export class LoginRequestDto {
     @IsNotEmpty()
     @IsEmail()
     @Transform(({ value }) => value.trim().toLowerCase())
-    email: string
+    email!: string
 
     @IsNotEmpty()
     @IsString()
-    password: string
+    password!: string
 }

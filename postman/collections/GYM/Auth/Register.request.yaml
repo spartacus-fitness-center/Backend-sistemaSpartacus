@@ -1,0 +1,40 @@
+$kind: http-request
+url: "{{BASE_URL}}/auth/register"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"Alan\",\r
+
+    \    \"email\": \"avalosalan789@gmail.com\",\r
+
+    \    \"password\": \"password123A_\",\r
+
+    \    \"branchId\": \"8ac0e90b-f4d1-45b8-9a8a-c3401150c366\"\r
+
+    }"
+scripts:
+  - type: afterResponse
+    code: "try {\r
+
+      \    const response = pm.response.json();\r
+
+      \    if (response.success) {\r
+
+      \        if (response?.data?.accessToken) {\r
+
+      \            pm.environment.set(\"ACCESS_TOKEN\",
+      response.data.accessToken);\r
+
+      \        }\r
+
+      \    }\r
+
+      } catch (error) {\r
+
+      \    console.log(\"La respuesta no es JSON o no contiene accessToken\");\r
+
+      }"
+    language: text/javascript
+order: 2000

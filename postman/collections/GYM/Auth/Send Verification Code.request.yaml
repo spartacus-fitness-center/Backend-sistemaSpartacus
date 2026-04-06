@@ -1,0 +1,8 @@
+$kind: http-request
+url: "{{BASE_URL}}/auth/send-verification-code"
+method: POST
+auth:
+  type: bearer
+  credentials:
+    token: "{{ACCESS_TOKEN}}"
+order: 4000

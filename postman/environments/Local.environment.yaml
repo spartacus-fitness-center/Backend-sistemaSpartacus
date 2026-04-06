@@ -1,0 +1,8 @@
+name: Local
+values:
+  - key: BASE_URL
+    value: 'http://localhost:3000'
+    enabled: true
+  - key: ACCESS_TOKEN
+    value: ''
+    enabled: true

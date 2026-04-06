@@ -1,0 +1,19 @@
+$kind: http-request
+url: "{{BASE_URL}}/branches"
+method: POST
+body:
+  type: json
+  content: "{\r
+
+    \    \"name\": \"San Felipe\",\r
+
+    \    \"state\": \"Guanajuato\",\r
+
+    \    \"municipality\": \"San Felipe\",\r
+
+    \    \"latitude\": 21.4853545,\r
+
+    \    \"longitude\": -101.2218452\r
+
+    }"
+order: 2000
