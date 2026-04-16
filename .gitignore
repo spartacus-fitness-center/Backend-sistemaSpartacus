@@ -1,3 +1,7 @@
+# Ignorar estas carpetas
+.postman/
+.vscode/
+
 # compiled output
 /dist
 /node_modules
