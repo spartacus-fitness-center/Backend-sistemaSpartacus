@@ -3,6 +3,6 @@ export class ResponseBranchDto {
     name!: string
     state!: string
     municipality!: string
-    latitude?: number | null
-    longitude?: number | null
+    latitude?: number 
+    longitude?: number 
 }

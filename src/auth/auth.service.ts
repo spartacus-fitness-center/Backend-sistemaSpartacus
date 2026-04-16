@@ -91,7 +91,7 @@ export class AuthService {
         // if (!user.emailIsVerified) throw new ForbiddenException('Email is not verified');
 
         const { accessToken, refreshToken } = await this.generateTokens(user)
-
+        console.log(user)
         return {
             user: {
                 id: user.id,
@@ -99,9 +99,9 @@ export class AuthService {
                 email: user.email,
                 role: user.role,
                 branch: user.branch,
-                memberProfile: {
-                    isProfileCompleted: !!user.memberProfile?.isProfileCompleted
-                }
+                ...(user.memberProfile !== null && {
+                    isProfileCompleted: user.memberProfile.isProfileCompleted
+                })
             },
             accessToken,
             refreshToken
@@ -142,9 +142,9 @@ export class AuthService {
                 email: user.email,
                 role: user.role,
                 branch: branchExist,
-                memberProfile: {
-                    isProfileCompleted: !!user.memberProfile?.isProfileCompleted
-                }
+                ...(user.memberProfile !== null && {
+                    isProfileCompleted: user.memberProfile.isProfileCompleted
+                })
             },
             accessToken,
             refreshToken

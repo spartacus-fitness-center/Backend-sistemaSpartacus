@@ -12,14 +12,14 @@ import { RoleGuard } from 'src/auth/guards/role.guard';
 export class MemberProfileController {
   constructor(private readonly memberProfileService: MemberProfileService) { }
 
-  @Throttle({ default: { limit: 5, ttl: 60000 } })
-  @Roles('MEMBER')
-  @UseGuards(JwtAuthGuard, RoleGuard)
-  @Get('me')
-  @ResponseMessage('Member profile retrieved successfully')
-  async me(@CurrentUser() user: AuthenticatedUser) {
-    const { id } = user
+  // // @Throttle({ default: { limit: 5, ttl: 60000 } })
+  // // @Roles('MEMBER')
+  // @UseGuards(JwtAuthGuard /*, RoleGuard */)
+  // @Get('me')
+  // @ResponseMessage('Profile retrieved successfully')
+  // async me(@CurrentUser() user: AuthenticatedUser) {
+  //   const { id } = user
     
-    return this.memberProfileService.getMemberProfile(id)
-  }
+  //   return this.memberProfileService.getMemberProfile(id)
+  // }
 }

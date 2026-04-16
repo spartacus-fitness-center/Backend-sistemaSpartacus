@@ -8,9 +8,11 @@ body:
 
     \    {\r
 
-    \        \"name\": \"Alan coach_01\",\r
+    \        \"name\": \"Alan coach_02\",\r
 
-    \        \"email\": \"alancoach01@gmail.com\",\r
+    \        \"email\": \"alancoach02@gmail.com\",\r
+
+    \        \"phone\": \"20011223344\",\r
 
     \        \"password\": \"1234\",\r
 
@@ -22,11 +24,9 @@ body:
 
     \    {\r
 
-    \        \"name\": \"Alan Admin_01\",\r
+    \        \"name\": \"Alan Admin_02\",\r
 
-    \        \"email\": \"alanadmin01@gmail.com\",\r
-
-    \        \"phone\": \"40011223344\",\r
+    \        \"email\": \"alanadmin02@gmail.com\",\r
 
     \        \"password\": \"1234\",\r
 
@@ -38,11 +38,11 @@ body:
 
     \    {\r
 
-    \        \"name\": \"Alan SuperAdmin_01\",\r
+    \        \"name\": \"Alan SuperAdmin_02\",\r
 
-    \        \"email\": \"alansuperadmin01@gmail.com\",\r
+    \        \"email\": \"alansuperadmin02@gmail.com\",\r
 
-    \        \"phone\": \"4281108561\",\r
+    \        \"phone\": \"10022334455\",\r
 
     \        \"password\": \"1234\",\r
 
