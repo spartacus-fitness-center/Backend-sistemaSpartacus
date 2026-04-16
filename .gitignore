@@ -1,6 +1,5 @@
-# Ignorar estas carpetas
+# postman repository
 .postman/
-.vscode/
 
 # compiled output
 /dist
@@ -33,6 +32,7 @@ lerna-debug.log*
 *.sublime-workspace
 
 # IDE - VSCode
+.vscode/
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
