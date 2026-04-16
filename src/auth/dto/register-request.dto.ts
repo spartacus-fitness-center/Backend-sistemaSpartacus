@@ -13,6 +13,7 @@ export class RegisterRequestDto {
     email!: string
 
     @IsOptional()
+    @Transform(({ value }) => value === '' ? undefined : value)
     @IsPhoneNumber('MX')
     phone?: string
 

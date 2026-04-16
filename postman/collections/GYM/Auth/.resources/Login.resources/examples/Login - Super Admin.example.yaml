@@ -1,0 +1,20 @@
+$kind: http-example
+request:
+  url: "{{BASE_URL}}/auth/login"
+  method: POST
+  body:
+    type: json
+    content: "{\r
+
+      \    \"email\": \"\",\r
+
+      \    \"password\": \"\"\r
+
+      }"
+response:
+  statusCode: 200
+  statusText: OK
+  body:
+    type: json
+    content: ""
+order: 2880566990505053

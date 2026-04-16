@@ -1,0 +1,54 @@
+$kind: http-request
+name: CreateUsers
+url: "{{BASE_URL}}/branches/create-users"
+method: POST
+body:
+  type: json
+  content: "[\r
+
+    \    {\r
+
+    \        \"name\": \"Alan coach_01\",\r
+
+    \        \"email\": \"alancoach01@gmail.com\",\r
+
+    \        \"password\": \"1234\",\r
+
+    \        \"role\": \"COACH\",\r
+
+    \        \"branchId\": \"8ac0e90b-f4d1-45b8-9a8a-c3401150c366\"\r
+
+    \    },\r
+
+    \    {\r
+
+    \        \"name\": \"Alan Admin_01\",\r
+
+    \        \"email\": \"alanadmin01@gmail.com\",\r
+
+    \        \"phone\": \"40011223344\",\r
+
+    \        \"password\": \"1234\",\r
+
+    \        \"role\": \"ADMIN\",\r
+
+    \        \"branchId\": \"8ac0e90b-f4d1-45b8-9a8a-c3401150c366\"\r
+
+    \    },\r
+
+    \    {\r
+
+    \        \"name\": \"Alan SuperAdmin_01\",\r
+
+    \        \"email\": \"alansuperadmin01@gmail.com\",\r
+
+    \        \"phone\": \"4281108561\",\r
+
+    \        \"password\": \"1234\",\r
+
+    \        \"role\": \"SUPER_ADMIN\"\r
+
+    \    }\r
+
+    ]"
+order: 2917396023084416

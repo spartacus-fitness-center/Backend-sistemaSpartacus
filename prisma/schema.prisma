@@ -59,7 +59,6 @@ model User {
   userAuthDetail UserAuthDetail?
   memberProfile  MemberProfile?
 
-  // 🔥 miembros que este coach tiene asignados
   coachedMembers MemberProfile[] @relation("CoachMembers")
 
   createdAt DateTime @default(now()) @map("created_at")

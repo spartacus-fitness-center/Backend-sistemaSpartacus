@@ -11,12 +11,16 @@ import { AuthModule } from './auth/auth.module';
 import { MailModule } from './mail/mail.module';
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { APP_GUARD } from '@nestjs/core';
+import { MemberProfileModule } from './member-profile/member-profile.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
     BranchesModule, PrismaModule, AuthModule, MailModule,
-    ThrottlerModule.forRoot([{ ttl: 60000, limit: 60 }])
+    ThrottlerModule.forRoot([{ ttl: 60000, limit: 60 }]),
+    MemberProfileModule,
+    UsersModule,
   ],
   controllers: [AppController],
   providers: [

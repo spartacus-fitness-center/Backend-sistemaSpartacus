@@ -1,4 +1,21 @@
 {
   "version": 1,
-  "flows": {}
+  "flows": {
+    "c2d9540f-1d8e-4733-b520-3ed31e9c5096": {
+      "path": "postman/flows/Register Login.flow",
+      "dependencies": [
+        {
+          "local": {
+            "collectionId": "CBfEEcdd8533983e5FaF78C1",
+            "requestId": "C4bA7e4cCe8Ce391b7F6dC7c",
+            "filePath": "postman/collections/GYM/Auth/Login.request.yaml"
+          },
+          "cloud": {
+            "collectionId": "44335614-96d6c093-1642-4937-95ca-8affe8f3cda3",
+            "requestId": "44335614-9c6c1eea-5c43-4b14-92f9-386bf5da9320"
+          }
+        }
+      ]
+    }
+  }
 }

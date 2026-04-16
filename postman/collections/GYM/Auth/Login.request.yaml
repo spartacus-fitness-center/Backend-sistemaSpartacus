@@ -33,4 +33,5 @@ scripts:
 
       }"
     language: text/javascript
+examples: .resources/Login.resources/examples
 order: 1000

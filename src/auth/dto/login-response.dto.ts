@@ -7,7 +7,12 @@ export class UserLoginDto {
     email!: string
     branchId?: string | null
     branch?: ResponseBranchDto | null
+    memberProfile?: MemberProfileDto | null
     role!: Role
+}
+
+export class MemberProfileDto {
+    isProfileCompleted!: boolean
 }
 
 export class LoginResponseDto {

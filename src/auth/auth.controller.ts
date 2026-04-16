@@ -121,9 +121,4 @@ export class AuthController {
   async resetPassword(@Body() resetPasswordDto: ResetPasswordDto): Promise<void> {
     await this.authService.resetPassword(resetPasswordDto)
   }
-
-  /* @Post('compare')
-  async compare(@Body() body: { id: string, refreshToken: string, newRefreshToken: string, hash: string, nowHash: string }) {
-    return this.authService.compare(body)
-  } */
 }

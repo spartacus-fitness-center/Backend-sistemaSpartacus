@@ -25,6 +25,13 @@ export class BranchesController {
     return { message: "Si ta jalando", user }
   }
 
+  @ResponseMessage("Usuarios traidos del back")
+  @Get('find-all-users')
+  async findAllUsers() {
+    return await this.branchesService.findAllUsers()
+  }
+
+  @ResponseMessage('Branch post successfully')
   @Post()
   create(@Body() createBranchDto: CreateBranchDto) {
     return this.branchesService.create(createBranchDto);
@@ -36,18 +43,28 @@ export class BranchesController {
     return this.branchesService.findAll();
   }
 
+  @ResponseMessage('Branch foundOne successfully')
   @Get(':id')
   findOne(@Param('id') id: number) {
     return this.branchesService.findOne(+id);
   }
 
+  @ResponseMessage('Branch update successfully')
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateBranchDto: UpdateBranchDto) {
     return this.branchesService.update(+id, updateBranchDto);
   }
-
+  @ResponseMessage('Branch delete successfully')
   @Delete(':id')
   remove(@Param('id') id: string) {
     return this.branchesService.remove(+id);
   }
+
+  @ResponseMessage('create users successfully')
+  @Post('create-users')
+  async createUsers(@Body() users) {
+    return this.branchesService.createUsers(users)
+  }
+
+  
 }

@@ -6,7 +6,7 @@ import { UpdateBranchDto } from './dto/update-branch.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { ResponseBranchDto } from './dto/response-branch.dto';
 
-// import * as bcrypt from 'bcrypt'
+import * as bcrypt from 'bcrypt'
 
 @Injectable()
 export class BranchesService {
@@ -46,20 +46,6 @@ export class BranchesService {
   }
 
   async findOne(id: number) {
-    // const password = await bcrypt.hash("1234", 10)
-    // const data = await this.prisma.user.create({
-    //   data: {
-    //     email: "avalosalan@gmail.com",
-    //     name: "Alan",
-    //     password,
-    //     branchId: "11111111-1111-1111-1111-111111111111",
-    //     phone: "4281108561",
-    //   }
-    // })
-
-    // const data = await this.prisma.branch.findMany({ select: { users: { select: { name: true } } } })
-
-    // console.log(data)
     return `This action returns a #${id} branch`;
   }
 
@@ -69,5 +55,42 @@ export class BranchesService {
 
   remove(id: number) {
     return `This action removes a #${id} branch`;
+  }
+
+  async createUsers(users) {
+    const userWithPasswrodHash = await Promise.all(
+      users.map(async (user) => {
+        const hashedPassword = await bcrypt.hash(user.password, 10);
+
+        return { ...user, password: hashedPassword };
+      })
+    );
+
+    const createdUsers = await this.prisma.$transaction(async (tx) => {
+      const newUsers = await tx.user.createManyAndReturn({
+        data: userWithPasswrodHash,
+      });
+
+      await tx.userAuthDetail.createMany({
+        data: newUsers.map((user) => ({
+          userId: user.id,
+        })),
+      });
+
+      return newUsers;
+    });
+
+    return createdUsers;
+  }
+
+  async findAllUsers() {
+    console.log("hola")
+    try {
+      const users = await this.prisma.user.findMany()
+      console.log("Hola", users)
+      return users
+    } catch (error) {
+      console.log(error)
+    }
   }
 }
